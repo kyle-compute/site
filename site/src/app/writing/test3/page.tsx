@@ -1,4 +1,7 @@
+"use client";
+
 import { WritingTemplate } from "@/components/writing-template";
+import { useRouter } from "next/navigation";
 
 const test3Post = {
   id: "test3",
@@ -16,10 +19,12 @@ Stay tuned for more content!`,
 };
 
 export default function Test3Page() {
+  const router = useRouter();
+  
   return (
     <WritingTemplate 
       selectedPost={test3Post}
-      onBack={() => window.history.back()}
+      onBack={() => router.back()}
     />
   );
 } 

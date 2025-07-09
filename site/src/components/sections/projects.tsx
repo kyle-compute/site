@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, Folder, PlayCircle, Zap, X, Code } from "lucide-react";
+import { ExternalLink, Zap, X, Code } from "lucide-react";
 import { useState } from "react";
 
 export function Projects() {

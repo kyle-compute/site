@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Mail, PenTool, ArrowRight } from "lucide-react";
+import { Mail, PenTool } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
 
 export function Header() {
@@ -11,10 +11,10 @@ export function Header() {
       </div>
       
       <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#181414] to-[#181414]/80 bg-clip-text text-transparent leading-tight">
-        Hey, I'm Kyle
+        Hey, I&apos;m Kyle
       </h1>
       <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-8">
-        I'm interested in a lot of topics but currently what's most interesting to me is infra deployment
+        I&apos;m interested in a lot of topics but currently what&apos;s most interesting to me is infra deployment
       </p>
       
       {/* Action Buttons */}

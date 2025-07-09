@@ -3,9 +3,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Calendar, Clock, BookOpen, Tag, Home, Sparkles } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, BookOpen, Tag } from "lucide-react";
 import { useState } from "react";
 import { Logo } from "@/components/ui/logo";
+import Link from "next/link";
 
 interface WritingPost {
   id: string;
@@ -144,47 +145,51 @@ export function WritingTemplate({
       <div className="min-h-screen bg-gradient-to-br from-[#f0eee6]/20 to-[#f0eee6]/10">
         {/* Header */}
         <header className="border-b border-[#f0eee6]/30 bg-[#f0eee6]/10 backdrop-blur-sm sticky top-0 z-10">
-          <div className="max-w-4xl mx-auto px-4 py-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
               <Button 
                 variant="ghost" 
                 onClick={handleBack}
-                className="text-[#181414] hover:bg-[#f0eee6]/50"
+                className="text-[#181414] hover:bg-[#f0eee6]/50 self-start"
               >
                 <ArrowLeft size={20} className="mr-2" />
                 Back to Writing
               </Button>
               
               {/* Creative Home Button */}
-              <div className="relative group">
+              <div className="relative group self-start sm:self-center">
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#f0eee6]/40 to-[#f0eee6]/20 rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-300"></div>
                 <Button 
                   variant="ghost"
                   asChild
                   className="relative text-[#181414] hover:bg-[#f0eee6]/50 border border-[#f0eee6]/30 hover:border-[#f0eee6]/60"
                 >
-                  <a href="/" className="flex items-center gap-2">
+                  <Link href="/" className="flex items-center gap-2">
                     <Logo size={18} />
-                    <span className="hidden sm:inline">Home</span>
-                  </a>
+                    <span>Home</span>
+                  </Link>
                 </Button>
               </div>
             </div>
             
             <div className="space-y-4">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Calendar size={16} />
-                {new Date(currentPost.date).toLocaleDateString('en-US', { 
-                  year: 'numeric', 
-                  month: 'long', 
-                  day: 'numeric' 
-                })}
-                <span className="mx-2">•</span>
-                <Clock size={16} />
-                {currentPost.readTime}
+              <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+                <div className="flex items-center gap-1">
+                  <Calendar size={16} />
+                  <span>{new Date(currentPost.date).toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                  })}</span>
+                </div>
+                <span className="hidden sm:inline">•</span>
+                <div className="flex items-center gap-1">
+                  <Clock size={16} />
+                  <span>{currentPost.readTime}</span>
+                </div>
               </div>
               
-              <h1 className="text-3xl md:text-4xl font-bold text-[#181414] leading-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#181414] leading-tight">
                 {currentPost.title}
               </h1>
               
@@ -193,7 +198,7 @@ export function WritingTemplate({
                   <Badge 
                     key={index} 
                     variant="secondary"
-                    className="bg-[#f0eee6]/60 text-[#181414] border-[#f0eee6]/50"
+                    className="bg-[#f0eee6]/60 text-[#181414] border-[#f0eee6]/50 text-xs"
                   >
                     <Tag size={12} className="mr-1" />
                     {tag}
@@ -205,12 +210,12 @@ export function WritingTemplate({
         </header>
 
         {/* Content */}
-        <main className="max-w-4xl mx-auto px-4 py-8">
-          <article className="prose prose-lg max-w-none">
+        <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+          <article className="prose prose-sm sm:prose-base lg:prose-lg max-w-none">
             <div 
               className="text-[#181414] leading-relaxed"
               dangerouslySetInnerHTML={{ 
-                __html: currentPost.content.replace(/\n/g, '<br>').replace(/#{1,6} /g, '<h2 class="text-2xl font-bold mt-8 mb-4 text-[#181414]">').replace(/<h2 class="text-2xl font-bold mt-8 mb-4 text-\[#181414\]">([^<]+)/g, '<h2 class="text-2xl font-bold mt-8 mb-4 text-[#181414]">$1</h2>')
+                __html: currentPost.content.replace(/\n/g, '<br>').replace(/#{1,6} /g, '<h2 class="text-xl sm:text-2xl font-bold mt-6 sm:mt-8 mb-3 sm:mb-4 text-[#181414]">').replace(/<h2 class="text-xl sm:text-2xl font-bold mt-6 sm:mt-8 mb-3 sm:mb-4 text-\[#181414\]">([^<]+)/g, '<h2 class="text-xl sm:text-2xl font-bold mt-6 sm:mt-8 mb-3 sm:mb-4 text-[#181414]">$1</h2>')
               }}
             />
           </article>
@@ -222,12 +227,12 @@ export function WritingTemplate({
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f0eee6]/20 to-[#f0eee6]/10">
       {/* Header */}
-      <header className="text-center py-16 px-4">
+      <header className="text-center py-12 sm:py-16 px-4">
         <div className="flex justify-center mb-6">
           <Logo size={48} className="text-[#181414]" />
         </div>
         
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#181414] to-[#181414]/80 bg-clip-text text-transparent leading-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#181414] to-[#181414]/80 bg-clip-text text-transparent leading-tight">
           My Writing
         </h1>
         
@@ -240,23 +245,23 @@ export function WritingTemplate({
               asChild
               className="relative text-[#181414] hover:bg-[#f0eee6]/50 border border-[#f0eee6]/30 hover:border-[#f0eee6]/60"
             >
-              <a href="/" className="flex items-center gap-2">
+              <Link href="/" className="flex items-center gap-2">
                 <Logo size={18} />
                 <span>Home</span>
-              </a>
+              </Link>
             </Button>
           </div>
         </div>
         
-        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+        <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
           Thoughts on technology, infrastructure, and the journey of building things
         </p>
       </header>
 
       {/* Featured Post */}
       {posts.find(post => post.featured) && (
-        <section className="max-w-6xl mx-auto px-4 mb-16">
-          <h2 className="text-2xl font-bold mb-8 text-[#181414]">Featured</h2>
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 sm:mb-16">
+          <h2 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-[#181414]">Featured</h2>
           {(() => {
             const featuredPost = posts.find(post => post.featured)!;
             return (
@@ -265,25 +270,25 @@ export function WritingTemplate({
                 onClick={() => handlePostSelect(featuredPost)}
               >
                 <CardHeader className="pb-4">
-                  <div className="flex items-center justify-between mb-4">
-                    <Badge className="bg-[#181414] text-[#f0eee6]">Featured</Badge>
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-3">
+                    <Badge className="bg-[#181414] text-[#f0eee6] self-start">Featured</Badge>
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
                         <Calendar size={14} />
-                        {new Date(featuredPost.date).toLocaleDateString()}
+                        <span>{new Date(featuredPost.date).toLocaleDateString()}</span>
                       </div>
                       <div className="flex items-center gap-1">
                         <Clock size={14} />
-                        {featuredPost.readTime}
+                        <span>{featuredPost.readTime}</span>
                       </div>
                     </div>
                   </div>
-                  <CardTitle className="text-2xl md:text-3xl mb-4 text-[#181414] group-hover:text-[#181414]/80 transition-colors">
+                  <CardTitle className="text-xl sm:text-2xl md:text-3xl mb-4 text-[#181414] group-hover:text-[#181414]/80 transition-colors">
                     {featuredPost.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground mb-6 text-lg leading-relaxed">
+                  <p className="text-muted-foreground mb-6 text-base sm:text-lg leading-relaxed">
                     {featuredPost.excerpt}
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -291,7 +296,7 @@ export function WritingTemplate({
                       <Badge 
                         key={index} 
                         variant="secondary"
-                        className="bg-[#f0eee6]/60 text-[#181414] border-[#f0eee6]/50"
+                        className="bg-[#f0eee6]/60 text-[#181414] border-[#f0eee6]/50 text-xs"
                       >
                         {tag}
                       </Badge>
@@ -305,9 +310,9 @@ export function WritingTemplate({
       )}
 
       {/* All Posts Grid */}
-      <section className="max-w-6xl mx-auto px-4 pb-16">
-        <h2 className="text-2xl font-bold mb-8 text-[#181414]">All Posts</h2>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16">
+        <h2 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-[#181414]">All Posts</h2>
+        <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
             <Card 
               key={post.id}
@@ -315,19 +320,19 @@ export function WritingTemplate({
               onClick={() => handlePostSelect(post)}
             >
               <CardHeader className="pb-3">
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-2">
                   <Badge 
                     variant="outline"
-                    className="text-xs border-[#f0eee6]/50 text-[#181414]"
+                    className="text-xs border-[#f0eee6]/50 text-[#181414] self-start"
                   >
                     {post.category}
                   </Badge>
                   <div className="flex items-center gap-1 text-xs text-muted-foreground">
                     <BookOpen size={12} />
-                    {post.readTime}
+                    <span>{post.readTime}</span>
                   </div>
                 </div>
-                <CardTitle className="text-lg leading-tight text-[#181414] group-hover:text-[#181414]/80 transition-colors">
+                <CardTitle className="text-base sm:text-lg leading-tight text-[#181414] group-hover:text-[#181414]/80 transition-colors">
                   {post.title}
                 </CardTitle>
               </CardHeader>
@@ -335,7 +340,7 @@ export function WritingTemplate({
                 <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
                   {post.excerpt}
                 </p>
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div className="flex flex-wrap gap-1">
                     {post.tags.slice(0, 2).map((tag, index) => (
                       <Badge 
@@ -357,7 +362,7 @@ export function WritingTemplate({
                   </div>
                   <div className="flex items-center gap-1 text-xs text-muted-foreground">
                     <Calendar size={12} />
-                    {new Date(post.date).toLocaleDateString()}
+                    <span>{new Date(post.date).toLocaleDateString()}</span>
                   </div>
                 </div>
               </CardContent>
