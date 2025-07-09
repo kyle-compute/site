@@ -30,8 +30,8 @@ jobs:
       run: npm ci
       working-directory: ./site
 
-    - name: Build
-      run: npm run build
+    - name: Build and prepare for deployment
+      run: npm run deploy
       working-directory: ./site
 
     - name: Setup Pages
