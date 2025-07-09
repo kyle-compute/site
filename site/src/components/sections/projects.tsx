@@ -115,15 +115,14 @@ export function Projects() {
         "/api/placeholder/400/300"
       ],
       highlights: [
-        "Ultra-low power consumption",
+        "Processing Power Constraints",
         "Real-time object detection",
         "Autonomous tracking system",
-        "Edge computing optimization"
       ]
     },
     {
       title: "C++ JSON Tokenizer",
-      description: "High-performance JSON tokenizer implementation in C++ with custom parsing algorithms and memory-efficient token processing for embedded systems and performance-critical applications.",
+      description: "Custom JSON Tokenizer from scratch in C++.",
       technologies: ["C++", "My prefrontal cortex"],
       githubUrl: "#",
       liveUrl: "#",
@@ -135,15 +134,15 @@ export function Projects() {
         "/api/placeholder/400/300"
       ],
       highlights: [
-        "High-performance parsing",
         "Memory-efficient tokenization",
         "Custom parsing algorithms",
-        "Embedded systems optimized"
+        "Data structures..."
+        
       ]
     },
     {
       title: "Low power device signal processing",
-      description: "Advanced signal processing algorithms optimized for ultra-low power embedded devices with real-time analysis capabilities and efficient power management for extended battery life.",
+      description: "Signal processing algorithms optimized for ultra-low power embedded device with limited processing capabilities.",
       technologies: ["C++", "DSP", "Embedded Systems", "Power Optimization"],
       githubUrl: "#",
       liveUrl: "#",
@@ -156,10 +155,9 @@ export function Projects() {
         "/api/placeholder/400/300"
       ],
       highlights: [
-        "Ultra-low power consumption",
         "Real-time signal analysis",
         "Advanced DSP algorithms",
-        "Extended battery life"
+        "Low power System Work"
       ]
     }
   ];
@@ -168,15 +166,15 @@ export function Projects() {
     switch (status) {
       case "Production":
       case "Live":
-        return "bg-green-50 text-green-700 border-green-300 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800";
+        return "bg-[#f0eee6]/60 text-[#181414] border-[#f0eee6]";
       case "Active":
-        return "bg-blue-50 text-blue-700 border-blue-300 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-800";
+        return "bg-[#f0eee6]/80 text-[#181414] border-[#f0eee6]";
       case "Development":
-        return "bg-yellow-50 text-yellow-700 border-yellow-300 dark:bg-yellow-900/20 dark:text-yellow-400 dark:border-yellow-800";
+        return "bg-[#f0eee6]/50 text-[#181414] border-[#f0eee6]";
       case "Completed":
-        return "bg-purple-50 text-purple-700 border-purple-300 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-800";
+        return "bg-[#f0eee6]/40 text-[#181414] border-[#f0eee6]";
       default:
-        return "bg-gray-50 text-gray-700 border-gray-300 dark:bg-gray-900/20 dark:text-gray-400 dark:border-gray-800";
+        return "bg-[#f0eee6]/60 text-[#181414] border-[#f0eee6]";
     }
   };
 
@@ -184,7 +182,7 @@ export function Projects() {
     <>
       <section className="mb-20">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-[#181414] to-[#181414]/80 bg-clip-text text-transparent">
             Featured Projects
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
@@ -194,12 +192,12 @@ export function Projects() {
 
         <div className="grid gap-8">
           {projects.map((project, index) => (
-            <Card key={index} className="group hover:shadow-2xl transition-all duration-500 border-2 hover:border-primary/40 bg-gradient-to-br from-card via-card/95 to-card/90 backdrop-blur-sm overflow-hidden">
+            <Card key={index} className="group hover:shadow-2xl transition-all duration-500 border-2 hover:border-[#f0eee6]/50 bg-gradient-to-br from-[#f0eee6]/20 via-[#f0eee6]/10 to-[#f0eee6]/20 backdrop-blur-sm overflow-hidden">
               <CardHeader className="pb-6">
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 bg-primary/10 rounded-lg">
-                      <Zap className="h-6 w-6 text-primary" />
+                    <div className="p-2 bg-[#f0eee6]/60 rounded-lg">
+                      <Zap className="h-6 w-6 text-[#181414]" />
                     </div>
                     <div>
                       <CardTitle className="text-2xl mb-1">{project.title}</CardTitle>
@@ -215,7 +213,7 @@ export function Projects() {
                 {/* Project Media Section */}
                 {project.videoUrl && (
                   <div className="relative">
-                    <div className="relative aspect-video bg-black/5 rounded-lg overflow-hidden group/video">
+                    <div className="relative aspect-video bg-[#f0eee6]/20 rounded-lg overflow-hidden group/video">
                       <video 
                         className="w-full h-full object-cover"
                         autoPlay
@@ -240,9 +238,9 @@ export function Projects() {
                   {/* Project Highlights */}
                   <div className="grid grid-cols-2 gap-3">
                     {project.highlights.map((highlight, highlightIndex) => (
-                      <div key={highlightIndex} className="flex items-center gap-2 p-3 bg-secondary/50 rounded-lg border">
-                        <div className="w-2 h-2 bg-primary rounded-full"></div>
-                        <span className="text-sm font-medium">{highlight}</span>
+                      <div key={highlightIndex} className="flex items-center gap-2 p-3 bg-[#f0eee6]/40 rounded-lg border border-[#f0eee6]/50">
+                        <div className="w-2 h-2 bg-[#181414] rounded-full"></div>
+                        <span className="text-sm font-medium text-[#181414]">{highlight}</span>
                       </div>
                     ))}
                   </div>
@@ -255,7 +253,7 @@ export function Projects() {
                     {project.technologies.map((tech, techIndex) => (
                       <span 
                         key={techIndex}
-                        className="px-3 py-1.5 bg-gradient-to-r from-secondary to-secondary/80 text-secondary-foreground rounded-full text-sm font-medium border hover:shadow-md transition-all duration-200 hover:scale-105"
+                        className="px-3 py-1.5 bg-[#f0eee6]/60 text-[#181414] rounded-full text-sm font-medium border border-[#f0eee6]/50 hover:bg-[#f0eee6]/80 hover:shadow-md transition-all duration-200 hover:scale-105"
                       >
                         {tech}
                       </span>
@@ -271,14 +269,14 @@ export function Projects() {
                         variant="outline" 
                         size="default" 
                         onClick={() => handleViewCode(project.title)}
-                        className="flex-1"
+                        className="flex-1 border-[#f0eee6] text-[#181414] hover:bg-[#f0eee6]/50"
                       >
                         <Code size={18} />
                         View Code
                       </Button>
                     )}
                     {project.videoUrl && (
-                      <Button variant="default" size="default" asChild className={project.hasCode ? "flex-1" : "w-full"}>
+                      <Button variant="default" size="default" asChild className={`${project.hasCode ? "flex-1" : "w-full"} bg-[#181414] hover:bg-[#181414]/80 text-[#f0eee6]`}>
                         <a href={project.liveUrl} className="flex items-center gap-2">
                           <ExternalLink size={18} />
                           Live Demo
@@ -296,16 +294,16 @@ export function Projects() {
       {/* Code Modal */}
       {showCodeModal && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-card border-2 border-primary/20 rounded-lg w-full max-w-4xl max-h-[80vh] overflow-hidden">
-            <div className="flex items-center justify-between p-4 border-b">
-              <h3 className="text-lg font-semibold">Code Preview</h3>
-              <Button variant="ghost" size="sm" onClick={() => setShowCodeModal(false)}>
+          <div className="bg-card border-2 border-[#f0eee6]/50 rounded-lg w-full max-w-4xl max-h-[80vh] overflow-hidden">
+            <div className="flex items-center justify-between p-4 border-b border-[#f0eee6]/50">
+              <h3 className="text-lg font-semibold text-[#181414]">Code Preview</h3>
+              <Button variant="ghost" size="sm" onClick={() => setShowCodeModal(false)} className="text-[#181414] hover:bg-[#f0eee6]/50">
                 <X size={20} />
               </Button>
             </div>
             <div className="p-4 overflow-auto max-h-[calc(80vh-80px)]">
-              <pre className="bg-muted/50 p-4 rounded-lg overflow-x-auto text-sm font-mono">
-                <code className="text-foreground">{selectedCode}</code>
+              <pre className="bg-[#f0eee6]/30 p-4 rounded-lg overflow-x-auto text-sm font-mono border border-[#f0eee6]/50">
+                <code className="text-[#181414]">{selectedCode}</code>
               </pre>
             </div>
           </div>
