@@ -1,0 +1,5 @@
+# Redirect root to main site if needed
+# /old-path /new-path 301
+
+# SPA fallback for any unmatched routes (though not needed for static export)
+# /* /index.html 200 
