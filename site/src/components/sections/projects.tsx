@@ -102,6 +102,26 @@ export function Projects() {
       ]
     },
     {
+      title: "MLH Elobot - Competitive Discord Bot",
+      description: "Discord bot that gamifies productivity for startup founders through weekly challenges, peer review, and ELO ranking system. Features competitive sprint cycles with difficulty voting and proof-based completion verification.",
+      technologies: ["Python", "Discord.py", "PostgreSQL", "Docker", "ELO Algorithm", "Docker Compose"],
+      githubUrl: "https://github.com/kyle-compute/StartupBot",
+      liveUrl: "#",
+      status: "Completed",
+      videoUrl: "/botdemo.mp4",
+      images: [
+        "/api/placeholder/400/300",
+        "/api/placeholder/400/300",
+        "/api/placeholder/400/300"
+      ],
+      highlights: [
+        "Weekly sprint challenges",
+        "Peer review system",
+        "ELO ranking algorithm",
+        "Community-driven difficulty rating"
+      ]
+    },
+    {
       title: "CUAS on Ultra Low Powered Systems",
       description: "Counter-Unmanned Aircraft System implementation on ultra-low power embedded systems using computer vision and machine learning for autonomous detection and tracking.",
       technologies: ["OpenCV", "MicroPython", "Espressif-IDF", "CUDA"],
@@ -277,10 +297,17 @@ export function Projects() {
                     )}
                     {project.videoUrl && (
                       <Button variant="default" size="default" asChild className={`${project.hasCode ? "flex-1" : "w-full"} bg-[#181414] hover:bg-[#181414]/80 text-[#f0eee6]`}>
-                        <a href={project.liveUrl} className="flex items-center gap-2">
-                          <ExternalLink size={18} />
-                          Live Demo
-                        </a>
+                        {project.title === "MLH Elobot - Competitive Discord Bot" ? (
+                          <a href={project.githubUrl} className="flex items-center gap-2">
+                            <ExternalLink size={18} />
+                            View on GitHub
+                          </a>
+                        ) : (
+                          <a href={project.liveUrl} className="flex items-center gap-2">
+                            <ExternalLink size={18} />
+                            Live Demo
+                          </a>
+                        )}
                       </Button>
                     )}
                   </div>
