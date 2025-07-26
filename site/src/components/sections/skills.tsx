@@ -1,11 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Container, GitBranch, Code, Wrench, LucideIcon } from "lucide-react";
+import { Code, Wrench, LucideIcon } from "lucide-react";
+import Image from "next/image";
 
 // Types for better type safety
 interface SkillItem {
   name: string;
   icon?: LucideIcon;
   hasIcon?: boolean;
+  svgIcon?: string;
 }
 
 interface SkillCategory {
@@ -14,36 +16,62 @@ interface SkillCategory {
   skills: SkillItem[];
 }
 
+// Technology to SVG mapping
+const techIcons: { [key: string]: string } = {
+  "Docker": "/svgs/docker.svg",
+  "Linux": "/svgs/linux.svg",
+  "Git": "/svgs/git.svg",
+  "Firebase": "/svgs/firebase.svg",
+  "DigitalOcean": "/svgs/digitalocean.svg",
+  "AWS": "/svgs/EC2.svg",
+  "Nginx": "/svgs/nginx.svg",
+  "InfluxDB": "/svgs/influxdb.svg",
+  "PostgreSQL": "/svgs/postgresql.svg",
+  "SQLite": "/svgs/sqlite.svg",
+  "C++": "/svgs/cplusplus.svg",
+  "Python": "/svgs/python.svg",
+  "TypeScript": "/svgs/typescript.svg",
+  "React": "/svgs/react.svg",
+  "Next.js": "/svgs/nextdotjs.svg",
+  "PyTorch": "/svgs/pytorch.svg",
+  "vLLM": "/svgs/vLLM-Logo.svg",
+  "OpenCV": "/svgs/opencv.svg",
+  "Pydantic": "/svgs/pydantic.svg",
+  "SQLAlchemy": "/svgs/sqlalchemy.svg",
+};
+
 // Skills data separated from presentation
 const skillsData: SkillCategory[] = [
   {
     title: "Tools, Infrastructure & Databases",
     icon: Wrench,
     skills: [
-      { name: "Docker", icon: Container },
-      { name: "Linux" },
-      { name: "Git", icon: GitBranch },
-      { name: "Firebase" },
-      { name: "DigitalOcean" },
-      { name: "Nginx" },
-      { name: "InfluxDB" },
-      { name: "PostgreSQL" },
-      { name: "SQLite" },
+      { name: "Docker", svgIcon: techIcons["Docker"] },
+      { name: "Linux", svgIcon: techIcons["Linux"] },
+      { name: "Git", svgIcon: techIcons["Git"] },
+      { name: "Firebase", svgIcon: techIcons["Firebase"] },
+      { name: "DigitalOcean", svgIcon: techIcons["DigitalOcean"] },
+      { name: "AWS", svgIcon: techIcons["AWS"] },
+      { name: "Nginx", svgIcon: techIcons["Nginx"] },
+      { name: "InfluxDB", svgIcon: techIcons["InfluxDB"] },
+      { name: "PostgreSQL", svgIcon: techIcons["PostgreSQL"] },
+      { name: "SQLite", svgIcon: techIcons["SQLite"] },
     ],
   },
   {
     title: "Languages, Libraries & Frameworks",
     icon: Code,
     skills: [
-      { name: "C++", hasIcon: true },
-      { name: "Python", hasIcon: true },
-      { name: "TypeScript", hasIcon: true },
-      { name: "React" },
-      { name: "Next.js" },
-      { name: "PyTorch" },
-      { name: "OpenCV" },
-      { name: "Pydantic" },
-      { name: "SQLAlchemy" },
+      { name: "C++", svgIcon: techIcons["C++"] },
+      { name: "Python", svgIcon: techIcons["Python"] },
+      { name: "TypeScript", svgIcon: techIcons["TypeScript"] },
+      { name: "React", svgIcon: techIcons["React"] },
+      { name: "Next.js", svgIcon: techIcons["Next.js"] },
+      { name: "PyTorch", svgIcon: techIcons["PyTorch"] },
+      { name: "vLLM", svgIcon: techIcons["vLLM"] },
+      { name: "OpenCV", svgIcon: techIcons["OpenCV"] },
+      { name: "Pydantic", svgIcon: techIcons["Pydantic"] },
+      { name: "SQLAlchemy", svgIcon: techIcons["SQLAlchemy"] },
     ],
   },
 ];
@@ -56,6 +84,21 @@ const SKILL_ITEM_WITH_ICON_CLASSES =
 
 // Reusable components
 function SkillItem({ skill }: { skill: SkillItem }) {
+  if (skill.svgIcon) {
+    return (
+      <div className={SKILL_ITEM_WITH_ICON_CLASSES}>
+        <Image
+          src={skill.svgIcon}
+          alt={`${skill.name} icon`}
+          width={16}
+          height={16}
+          className="flex-shrink-0"
+        />
+        {skill.name}
+      </div>
+    );
+  }
+
   if (skill.icon) {
     const IconComponent = skill.icon;
     return (

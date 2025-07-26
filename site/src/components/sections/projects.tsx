@@ -4,10 +4,32 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Zap, X, Code } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
 
 export function Projects() {
   const [showCodeModal, setShowCodeModal] = useState(false);
   const [selectedCode, setSelectedCode] = useState("");
+
+  // Technology to SVG mapping
+  const techIcons: { [key: string]: string } = {
+    "vLLM": "/svgs/vLLM-Logo.svg",
+    "Python": "/svgs/python.svg",
+    "Docker": "/svgs/docker.svg",
+    "AWS": "/svgs/EC2.svg",
+    "C++": "/svgs/cplusplus.svg",
+    "PostgreSQL": "/svgs/postgresql.svg",
+    "InfluxDB": "/svgs/influxdb.svg",
+    "Digital Ocean": "/svgs/digitalocean.svg",
+    "Next.js 15": "/svgs/nextdotjs.svg",
+    "React 19": "/svgs/react.svg",
+    "TypeScript": "/svgs/typescript.svg",
+    "OpenCV.js": "/svgs/opencv.svg",
+    "OpenCV": "/svgs/opencv.svg",
+    "MicroPython": "/svgs/python.svg",
+    "Discord.py": "/svgs/python.svg",
+    "Docker Compose": "/svgs/docker.svg",
+    "CUDA": "/svgs/cuda-svgrepo-com.svg",
+  };
 
   const codeSnippets = {
     "Low power device signal processing": `void loop()
@@ -82,6 +104,26 @@ export function Projects() {
 
   const projects = [
     {
+      title: "Automated Medical Billing Forms",
+      description: "AI-powered medical billing automation system using fine tuned, INT4 Quantized, Regex prior to prompting, vLLM inference, RAG for intelligent form processing, and PDF editing libraries for seamless document generation and processing. For 180 tokens/second on a singular 4080 super",
+      technologies: ["vLLM", "RAG", "Python", "Docker", "Fine tuned LLM", "Regex", "AWS"],
+      githubUrl: "#",
+      liveUrl: "#",
+      status: "Active",
+      videoUrl: "/demo-ai-biller.mp4",
+      images: [
+        "/api/placeholder/400/300", // Replace with actual image paths
+        "/api/placeholder/400/300",
+        "/api/placeholder/400/300"
+      ],
+      highlights: [
+        "Custom local model deployment",
+        "Intelligent form extraction",
+        "RAG-based processing",
+        "Automated PDF generation"
+      ]
+    },
+    {
       title: "Real Time Compressed Gas Leak Sensors",
       description: "ESP32-based sensor network for real-time detection and monitoring of compressed gas leaks with custom C++ libraries, wireless communication, and instant alerting system.",
       technologies: ["C++", "Espressif","PostgreSQL", "InfluxDB", "Docker", "Digital Ocean", "Custom Signal Processing ^_^"],
@@ -99,6 +141,45 @@ export function Projects() {
         "Wireless sensor network",
         "Custom C++ libraries",
         "Instant alerting system"
+      ]
+    },
+    {
+      title: "Image to G-Code Converter",
+      description: "Next.js web application that converts images to G-code for CNC machines using OpenCV.js vectorization. Features color region processing, centerline extraction, and optimized toolpath generation.",
+      technologies: ["Next.js 15", "React 19", "TypeScript", "OpenCV.js", "Tailwind CSS", "Radix UI"],
+      githubUrl: "https://github.com/kyle-compute/imagetogcode",
+      liveUrl: "#",
+      status: "Completed",
+      videoUrl: "/fern.mp4",
+      images: [
+        "/api/placeholder/400/300",
+        "/api/placeholder/400/300",
+        "/api/placeholder/400/300"
+      ],
+      highlights: [
+        "Color region vectorization",
+        "Centerline extraction algorithms",
+        "Path optimization for CNC",
+        "Real-time image processing"
+      ]
+    },
+    {
+      title: "CUAS on Ultra Low Powered Systems",
+      description: "Counter-Unmanned Aircraft System implementation on ultra-low power embedded systems using computer vision and machine learning for autonomous detection and tracking.",
+      technologies: ["OpenCV", "MicroPython", "Espressif-IDF", "CUDA"],
+      githubUrl: "#",
+      liveUrl: "#",
+      status: "Completed",
+      videoUrl: null,
+      images: [
+        "/api/placeholder/400/300", // Replace with actual image paths
+        "/api/placeholder/400/300",
+        "/api/placeholder/400/300"
+      ],
+      highlights: [
+        "Processing Power Constraints",
+        "Real-time object detection",
+        "Autonomous tracking system",
       ]
     },
     {
@@ -122,22 +203,23 @@ export function Projects() {
       ]
     },
     {
-      title: "CUAS on Ultra Low Powered Systems",
-      description: "Counter-Unmanned Aircraft System implementation on ultra-low power embedded systems using computer vision and machine learning for autonomous detection and tracking.",
-      technologies: ["OpenCV", "MicroPython", "Espressif-IDF", "CUDA"],
+      title: "Low power device signal processing",
+      description: "Signal processing algorithms optimized for ultra-low power embedded device with limited processing capabilities.",
+      technologies: ["C++", "DSP", "Embedded Systems", "Power Optimization"],
       githubUrl: "#",
       liveUrl: "#",
       status: "Completed",
       videoUrl: null,
+      hasCode: true,
       images: [
         "/api/placeholder/400/300", // Replace with actual image paths
         "/api/placeholder/400/300",
         "/api/placeholder/400/300"
       ],
       highlights: [
-        "Processing Power Constraints",
-        "Real-time object detection",
-        "Autonomous tracking system",
+        "Real-time signal analysis",
+        "Advanced DSP algorithms",
+        "Low power System Work"
       ]
     },
     {
@@ -158,26 +240,6 @@ export function Projects() {
         "Custom parsing algorithms",
         "Data structures..."
         
-      ]
-    },
-    {
-      title: "Low power device signal processing",
-      description: "Signal processing algorithms optimized for ultra-low power embedded device with limited processing capabilities.",
-      technologies: ["C++", "DSP", "Embedded Systems", "Power Optimization"],
-      githubUrl: "#",
-      liveUrl: "#",
-      status: "Completed",
-      videoUrl: null,
-      hasCode: true,
-      images: [
-        "/api/placeholder/400/300", // Replace with actual image paths
-        "/api/placeholder/400/300",
-        "/api/placeholder/400/300"
-      ],
-      highlights: [
-        "Real-time signal analysis",
-        "Advanced DSP algorithms",
-        "Low power System Work"
       ]
     }
   ];
@@ -273,8 +335,17 @@ export function Projects() {
                     {project.technologies.map((tech, techIndex) => (
                       <span 
                         key={techIndex}
-                        className="px-3 py-1.5 bg-[#f0eee6]/60 text-[#181414] rounded-full text-sm font-medium border border-[#f0eee6]/50 hover:bg-[#f0eee6]/80 hover:shadow-md transition-all duration-200 hover:scale-105"
+                        className="px-3 py-1.5 bg-[#f0eee6]/60 text-[#181414] rounded-full text-sm font-medium border border-[#f0eee6]/50 hover:bg-[#f0eee6]/80 hover:shadow-md transition-all duration-200 hover:scale-105 flex items-center gap-2"
                       >
+                        {techIcons[tech] && (
+                          <Image
+                            src={techIcons[tech]}
+                            alt={`${tech} icon`}
+                            width={16}
+                            height={16}
+                            className="flex-shrink-0"
+                          />
+                        )}
                         {tech}
                       </span>
                     ))}
@@ -295,9 +366,9 @@ export function Projects() {
                         View Code
                       </Button>
                     )}
-                    {project.videoUrl && (
+                    {project.videoUrl && project.title !== "Automated Medical Billing Forms" && (
                       <Button variant="default" size="default" asChild className={`${project.hasCode ? "flex-1" : "w-full"} bg-[#181414] hover:bg-[#181414]/80 text-[#f0eee6]`}>
-                        {project.title === "MLH Elobot - Competitive Discord Bot" ? (
+                        {project.title === "MLH Elobot - Competitive Discord Bot" || project.title === "Image to G-Code Converter" ? (
                           <a href={project.githubUrl} className="flex items-center gap-2">
                             <ExternalLink size={18} />
                             View on GitHub
